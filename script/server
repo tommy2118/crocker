@@ -1,0 +1,13 @@
+#!/bin/bash
+# vim:set ft=sh sw=2 sts=2:
+
+dc="$(which docker-compose)"
+docker="$(which docker)"
+
+if [[ -e tmp/pids/server.pid ]]; then
+  rm tmp/pids/server.pid
+fi
+
+${dc} up -d
+${dc} stop web
+${dc} run --rm --service-ports web

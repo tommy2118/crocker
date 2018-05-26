@@ -1,0 +1,14 @@
+#!/bin/bash
+# vim:set ft=sh sw=2 sts=2:
+
+dc="$(which docker-compose)"
+docker="$(which docker)"
+
+${dc} pull
+${dc} up --build -d
+if [[ -e db/schema.rb ]]; then
+  ${dc} run web bin/rails db:reset
+  ${dc} run web bin/rails db:test:prepare
+  ${dc} run web bin/rails log:clear tmp:clear
+fi
+${dc} stop

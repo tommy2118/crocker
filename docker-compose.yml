@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:10.3
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  yarn:
+    image: node:9.11.1
+    volumes:
+      - .:/crocker
+    command: ["yarn", "install"]
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/crocker
+    command: ["rails", "s", "-b", "0.0.0.0"]
+
+volumes:
+  db-data:

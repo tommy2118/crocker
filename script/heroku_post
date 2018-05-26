@@ -1,0 +1,10 @@
+#!/bin/bash
+# vim:set ft=sh sw=2 sts=2:
+
+if [ "${THIS_IS_A_REVIEW_APP}" = "true" ]; then
+  echo "copying stage database"
+  pg_dump $STAGING_DATABASE_URL | psql $DATABASE_URL
+
+  echo "running migrations"
+  bundle exec rake db:migrate
+fi
