@@ -7,11 +7,15 @@ RUN apt-get update -qqy && apt-get -qqyy install \
     nodejs \
   && rm -rf /var/lib/apt/lists/*
 
-COPY Gemfile* /usr/src/app/
-WORKDIR /usr/src/app
+ENV APP_HOME /crocker
+
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+COPY Gemfile* $APP_HOME/
 RUN bundle install
 
-COPY package.json /usr/src/app/
+COPY package.json $APP_HOME/
 
-COPY . /usr/src/app/
+COPY . $APP_HOME/
 
