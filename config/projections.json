@@ -1,0 +1,78 @@
+{
+  "app/decorators/*_decorator.rb": {
+    "command": "decorator",
+    "template": "class %SDecorator < Draper::Decorator\nend",
+    "affinity": "model"
+  },
+
+  "config/*": {
+    "command": "cfg"
+  },
+
+  "spec/factories/*.rb": {
+    "command": "factory",
+    "affinity": "collection",
+    "alternate": "app/models/%i.rb",
+    "related": "db/schema.rb#%s",
+    "test": "spec/models/%i_spec.rb",
+    "template": "FactoryBot.define do\n  factory :%i do\n  end\nend",
+    "keywords": "factory sequence"
+  },
+
+  "features/*.feature": {
+    "command": "feature",
+    "template": "Feature: %h"
+  },
+
+  "app/policies/*.rb": {
+    "command": "policy",
+    "template": "class %SPolicy\nend",
+    "affinity": "model"
+  },
+
+  "app/presenters/*.rb": {
+    "command": "presenter",
+    "template": "class %S\nend",
+    "affinity": "model"
+  },
+
+  "app/models/notifications/*.rb": {
+    "command": "notification",
+    "template": "class Notification::%S < Notifications::PushNotification\nend"
+  },
+
+  "app/representers/*.rb": {
+    "command": "representer",
+    "template": "class %S\nend",
+    "affinity": "model",
+    "related": "spec/support/schemas/{}.json"
+  },
+
+  "spec/support/schemas/*.json": {
+    "command": "jsonschema",
+    "template": "{\n\"$schema\":\"http:://json-schema.org/draft-04/schema#\",\"type\":\"object\"\n\"}",
+    "affinity": "representer",
+    "alternate": "spec/representers/{basename}_spec.rb"
+  },
+
+  "app/services/*.rb": {
+    "command": "service",
+    "template": "class %SService\nend",
+    "affinity": "model"
+  },
+
+  "features/step_definitions/*_steps.rb": {
+    "command": "steps"
+  },
+
+  "app/uploaders/*_uploader.rb": {
+    "command": "uploader",
+    "template": "class %SUploader < CarrierWave::Uploader::Base\nend"
+  },
+
+  "app/workers/*.rb": {
+    "command": "worker",
+    "template": "class %SWorker\n  include Sidekiq::Worker\n\n  def perform\n  end\n\nend",
+    "affinity": "model"
+  }
+}

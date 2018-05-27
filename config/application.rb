@@ -19,15 +19,28 @@ Bundler.require(*Rails.groups)
 
 module Crocker
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
-    # Don't generate system test files.
+    config.autoload_paths += [
+      Rails.root.join("app", "workers"),
+      Rails.root.join("lib")
+    ]
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: true,
+        view_specs: true,
+        helper_specs: true,
+        routing_specs: false,
+        controller_specs: true,
+        request_specs: true
+      g.integration_tool :rspec
+      g.performance_tool :rspec
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
+    config.encoding = "utf-8"
+    config.filter_parameters += [:password, :email, :first_name, :last_name]
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=31536000' }
+    config.active_record.schema_format = :ruby
     config.generators.system_tests = nil
   end
 end
