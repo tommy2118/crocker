@@ -10,4 +10,4 @@ fi
 
 ${dc} up -d
 ${dc} stop web
-${dc} run --rm --service-ports web
+${dc} up web

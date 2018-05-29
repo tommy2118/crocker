@@ -1,0 +1,26 @@
+%h1 New Recipe
+
+.form
+  = form_for @recipe do |f|
+    %p
+      = f.label :name
+      = f.text_field :name
+    %p
+      = f.label :diet_type
+      = f.select :diet_type, Recipe.diet_types.keys.map { |dt| [dt.humanize, dt] }
+    %p
+      = f.label :protein
+      = f.select :protein, Recipe.proteins.keys.map { |p| [p.humanize, p] }
+    %p
+      = f.label :cook_method
+      = f.select :cook_method, Recipe.cook_methods.keys.map { |cm| [cm.humanize, cm] }
+    %p
+      = f.label :prepare_time
+      = f.text_field :prepare_time
+    %p
+      = f.label :cook_time
+      = f.text_field :cook_time
+    %p
+      = f.submit "Save"
+
+
