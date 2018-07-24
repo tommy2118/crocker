@@ -8,5 +8,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application'
+  %header
+    %div{ id: "header-component" }
   %body
+    - flash.each do |k, v|
+      = content_tag :div, v, class: "flash #{k}"
+
     = yield
+  %footer
+    %div{ id: "footer-component" }
