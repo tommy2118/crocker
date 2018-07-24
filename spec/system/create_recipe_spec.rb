@@ -15,6 +15,6 @@ RSpec.describe "create recipe", type: :system, js: true do
 
 
 
-    expect(page).to have_content "foo"
+    expect(page).to have_content "Recipe added"
   end
 end
