@@ -36,11 +36,17 @@ module Crocker
       g.performance_tool :rspec
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
     config.encoding = "utf-8"
     config.filter_parameters += [:password, :email, :first_name, :last_name]
     config.time_zone = 'Eastern Time (US & Canada)'
     config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=31536000' }
     config.active_record.schema_format = :ruby
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.template_engine :haml
+    end
+
   end
 end

@@ -85,3 +85,4 @@ production:
   database: crocker_production
   username: crocker
   password: <%= ENV['CROCKER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
