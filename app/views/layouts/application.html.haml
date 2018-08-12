@@ -12,9 +12,10 @@
   %header
     %div{ id: "header-component" }
   %body
-    - flash.each do |k, v|
-      = content_tag :div, v, class: "flash #{k}"
+    .container
+      - flash.each do |k, v|
+        = content_tag :div, v, class: "flash #{k}"
 
-    = yield
+      = yield
   %footer
     %div{ id: "footer-component" }
