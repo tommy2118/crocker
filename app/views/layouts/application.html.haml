@@ -9,13 +9,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application'
     = stylesheet_pack_tag 'application'
-  %header
-    %div{ id: "header-component" }
   %body
+    %header
+      %div{ id: "header-component" }
     .container
-      - flash.each do |k, v|
-        = content_tag :div, v, class: "flash #{k}"
+      - render_flash_messages
 
       = yield
-  %footer
-    %div{ id: "footer-component" }
+    %footer
+      %div{ id: "footer-component" }

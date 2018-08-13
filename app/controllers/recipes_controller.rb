@@ -12,9 +12,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.create(recipe_params)
 
     if @recipe.save
-      redirect_to recipes_url, notice: "Recipe added"
+      flash[:notice] = "Recipe saved"
+      redirect_to recipes_url
 
     else
+      flash[:error] = "The recipe was not saved"
       render :new
     end
   end
