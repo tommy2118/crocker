@@ -1,4 +1,4 @@
-FROM ruby:2.4.3
+FROM ruby:2.4.5
 
 LABEL maintainer="tommy.caruso2118@gmail.com"
 
@@ -13,7 +13,7 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
-RUN bundle install
+RUN gem update bundler && bundle install
 
 COPY package.json $APP_HOME/
 
